@@ -1,0 +1,36 @@
+version: "2.2"
+services:
+  location-db:
+    restart: always
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=fljhrgou
+      - POSTGRES_DB=location
+    volumes:
+      - /srv/docker/postgresql:/var/lib/postgresql
+    networks:
+      db:
+        aliases:
+          - database
+  location:
+    build:
+      context: .
+      dockerfile: Location.WebApi/Dockerfile
+      args:
+        buildno: 1
+    environment:
+      - DB_SERVER=database
+      - ASPNETCORE_URLS=http://+:80
+    depends_on: 
+      - location-db
+    ports:
+      - "80:80"
+    networks:
+      db :
+        aliases:
+          - backend-location
+networks:
+  db:
