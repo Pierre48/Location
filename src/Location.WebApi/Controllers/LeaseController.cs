@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 namespace Location.WebApi.Controllers
 {   
     [ApiController]
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     public class LeaseController : ControllerBase
     {
@@ -23,7 +24,7 @@ namespace Location.WebApi.Controllers
         [HttpGet]
         public IEnumerable<LeaseModel> Get()
         {
-            return new List<LeaseModel>{ new LeaseModel{StartDate = DateTime.Now},new LeaseModel{StartDate = DateTime.Now},new LeaseModel{StartDate = DateTime.Now},new LeaseModel{StartDate = DateTime.Now},new LeaseModel{StartDate = DateTime.Now}};
+            return new List<LeaseModel>{ new LeaseModel{StartDate = DateTime.Now},new LeaseModel{StartDate = DateTime.Now},new LeaseModel{StartDate = DateTime.Now},new LeaseModel{StartDate = DateTime.Now}};
         }
     }
 }

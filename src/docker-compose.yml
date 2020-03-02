@@ -1,20 +1,20 @@
 version: "2.2"
 services:
-  location-db:
+  locationdb:
     restart: always
     image: postgres
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=fljhrgou
+      - POSTGRES_USER=location
+      - POSTGRES_PASSWORD=location
       - POSTGRES_DB=location
     volumes:
       - /srv/docker/postgresql:/var/lib/postgresql
     networks:
       db:
         aliases:
-          - database
+          - locationdb
   location:
     build:
       context: .
@@ -25,7 +25,7 @@ services:
       - DB_SERVER=database
       - ASPNETCORE_URLS=http://+:80
     depends_on: 
-      - location-db
+      - locationdb
     ports:
       - "80:80"
     networks:

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 namespace Location.WebApi.Controllers
 {   
     [ApiController]
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     public class PropertyController : ControllerBase
     {
